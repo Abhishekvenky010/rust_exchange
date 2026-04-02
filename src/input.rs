@@ -11,3 +11,7 @@ pub enum side{
      Sell
 }
 
+#[derive(Deserialize,Serialize)]
+pub struct Deleteorder{
+    pub order_id:String
+}

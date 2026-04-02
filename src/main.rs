@@ -1,23 +1,14 @@
-use actix_web::{App, HttpServer, Responder};
-use serde_json::error;
+use actix_web::{App, HttpServer, Responder,HttpServer,get,post,delete,web::Json};
+use serde::{Deserialize,Serialize};
+use crate::routes::create_order;
+pub mod routes;
+pub mod input;
+pub mod output;
 
 #[actix_web::main]
 async fn main() -> Result<(),std::io::Error>{
     HttpServer::new(move||{
-App::new().service(create_order())
-           .service(delete_order())
-           .service(get_depth())
-    }).bind("127.0.0.1:8000")?.run().await
-}
-#[post("/order")]
-async fn create_order()-> impl Responder{
-    "Hello world"
-}
-#[delete("/delete")]
-async fn delete_order()-> impl Responder{
-    "delete user ep"
-}
-#[get("/deposit")]
-async fn get_depth()->impl Responder{
-    "deposit user ep"
+App::new().service(create_order)
+           
+    }).bind("127.0.0.1:8080")?.run().await
 }
